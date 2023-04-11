@@ -1,0 +1,88 @@
+user_input="""
+295743861
+431865927
+876192543
+387459216
+612387495
+549216738
+763524189
+928671354
+154938672"""
+one_type=list(user_input.replace("\n",""))
+second_type=user_input.split()
+
+integer_check=True
+try:
+    horizontal=[[[int(x) for x in item[j:j+3]]for j in [0,3,6]]for item in second_type]
+    horizontal_main=[[int(x) for x in item[0:9]]for item in second_type]
+    vertical=[int(item[i])  for i in range(9)for item in second_type]
+    vertical_main=[[x for x in vertical[i:i+9]] for i in [y*9 for y,z in enumerate(vertical) if y<9]]
+except:
+    integer_check=False
+    
+#print(horizontal_main)
+#print(vertical_main)
+
+if integer_check:
+    hor_length_check=True
+    for i in horizontal_main:
+        if len(horizontal_main)!=9 and len(i)!=9:
+            hor_length_check=False
+            break
+        
+    ver_length_check=True
+    for i in vertical_main:
+        if len(vertical_main)!=9 and len(i)!=9:
+            ver_length_check=False
+            break
+        
+    hor_unique=True
+    for i in horizontal_main:
+        if len(list(set(i)))!=9:
+            hor_unique=False
+            break
+
+    ver_unique=True
+    for i in vertical_main:
+        if len(list(set(i)))!=9:
+            ver_unique=False
+            break
+
+    main_check=False not in [integer_check,hor_length_check,ver_length_check,hor_unique,ver_unique]
+
+else:
+    main_check=False
+    print("No")
+  
+if main_check:
+    lst=[] 
+    main_container=[]
+    for a in range(3):
+        for b in horizontal_main:
+            i=3*a
+            j=i+3
+            for c in range(i,j):
+                lst.append(b[c])
+            if len(lst)==9:
+                main_container.append(lst)
+                lst=[]
+    check_unique=True
+    for i in main_container:
+        if len(list(set(i)))!=9:
+            check_unique=False
+            break
+    if check_unique:
+        print("Yes")
+    else:
+        print("No")
+
+else:
+    print("No")
+
+
+    
+    
+    
+
+        
+        
