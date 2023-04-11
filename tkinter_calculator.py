@@ -5,29 +5,22 @@ window = tk.Tk()
 #window.resizable(width=False, height=False)
 #window.geometry("")
 
-
-
 text_input=tk.StringVar()
 display = tk.Entry(window,width=11,justify=tk.RIGHT,font=("Arial",17),state="readonly",readonlybackground="white", textvariable = text_input)
 display.grid(row=0,column=0,columnspan=5)
 
-
 text_input.set('0')
-
 
 new_value = 0
 operation_clicked=False
 
 
 def clicker(n):
-    global operation_clicked
-    
+    global operation_clicked   
     text_string = text_input.get()
-    
     if text_string == "Error":
         return False
 
-    
     if operation_clicked:
         text_string="0"
         operation_clicked=False
@@ -50,8 +43,7 @@ def clicker(n):
           
         text_input.set(text_string)
 
-        
-
+      
 saved_value = 0
 saved_op=''
 def operation(op):
@@ -80,18 +72,12 @@ def operation(op):
         text_input.set(text_string)
         return None
 
-    
-
     #save value
     if saved_op=='' and "." in text_string: saved_value =float(text_string)
     if saved_op=='' and "." not in text_string: saved_value =int(text_string)
 
-    
-
     if operation_clicked and op in ["+","-","*","/"]:
         saved_op=op
-    
-
     
     #convert to number
     if "." in text_string:
@@ -99,7 +85,6 @@ def operation(op):
     else:
         text_number=int(text_string)
     
-
     #+
     if saved_op=="+" and not operation_clicked:
         saved_value = saved_value + text_number
@@ -166,9 +151,6 @@ def operation(op):
         saved_op=''
 
     operation_clicked = True
-
-    
-        
 
 b0 = tk.Button(window, width=2,text="0",command=lambda *args: clicker(b0["text"]))
 b0.grid(row=4,column=0,sticky='nesw')
