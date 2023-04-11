@@ -30,7 +30,7 @@ if integer_check:
             hor_length_check=False
             break
         
-    ver_length_check=True
+    ver_length_check=True 
     for i in vertical_main:
         if len(vertical_main)!=9 and len(i)!=9:
             ver_length_check=False
